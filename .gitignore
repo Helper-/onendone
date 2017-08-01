@@ -15,3 +15,10 @@
 
 # Go compiled program
 server
+
+# Mac OS files
+.DS_Store
+
+# Project build files
+dist/
+node_modules/
