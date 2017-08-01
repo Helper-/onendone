@@ -2,7 +2,10 @@
 
 function Test() {
     console.log("This is working");
-    
-} 
+}
 
-module.exports = Test
+let foo = async () => "hello world";
+let bar = async () => await foo();
+bar();
+
+module.exports = Test;

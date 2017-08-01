@@ -4,8 +4,12 @@
     "description": "One restaurant finder",
     "main": "index.js",
     "scripts": {
+        "start": "npm run build && npm run watch",
+        "build": "npm run build-ts && npm run tslint && npm run copy-static-assets",
+        "watch": "npm run watch-ts",
         "build-ts": "tsc",
         "watch-ts": "tsc -w",
+        "tslint": "tslint -c tslint.json -p tsconfig.json",
         "copy-static-assets": "node copyStaticAssets.js"
     },
     "repository": {
@@ -24,8 +28,10 @@
     "homepage": "https://github.com/Helper-/onendone#readme",
     "dependencies": {},
     "devDependencies": {
+        "@types/es6-promise": "0.0.32",
         "@types/node": "^8.0.19",
+        "shelljs": "^0.7.8",
         "tslint": "^5.5.0",
-        "typescript": "^2.4.2"
+        "typescript": "~2.4.2"
     }
 }
