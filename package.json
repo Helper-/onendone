@@ -4,16 +4,20 @@
     "description": "One restaurant finder",
     "main": "index.js",
     "scripts": {
-        "start": "npm run build:watch && npm run watch",
-        "start-prod": "npm run build",
-        "build:watch": "npm run build-ts && npm run tslint && npm run copy-static-assets",
-        "watch": "parallelshell 'npm run watch:ts' 'npm run watch:css' 'npm run watch:html'",
         "build-ts": "tsc",
-        "watch:ts": "tsc -w",
-        "watch:css": "watch 'cp -R src/css/*.css dist/css/' src/css",
-        "watch:html": "watch 'cp src/*.html dist/' src/",
+        "build:watch": "npm run build-ts && npm run tslint && npm run copy-static-assets",
+        "clean:dist": "rm -rf dist",
+        "copy-static-assets": "node copyStaticAssets.js",
+        "css:dist": "minify --output dist/css/style.min.css src/css/style.css",
+        "imagemin": "imagemin src/public/images/* dist/public/images/* -p",
+        "start": "npm run build:watch && npm run uglify:dist && npm run watch",
+        "start-prod": "npm run build",
         "tslint": "tslint -c tslint.json -p tsconfig.json",
-        "copy-static-assets": "node copyStaticAssets.js"
+        "uglify:dist": "uglifyjs src/js/*.js > dist/js/script.min.js",
+        "watch": "parallelshell 'npm run watch:ts' 'npm run watch:css' 'npm run watch:html'",
+        "watch:css": "watch 'npm run css:dist' src/css",
+        "watch:html": "watch 'cp src/*.html dist/' src/",
+        "watch:ts": "tsc -w"
     },
     "repository": {
         "type": "git",
@@ -33,10 +37,15 @@
     "devDependencies": {
         "@types/es6-promise": "0.0.32",
         "@types/node": "^8.0.19",
+        "cssmin": "^0.4.3",
+        "imagemin": "^5.3.1",
+        "minifier": "^0.8.1",
         "parallelshell": "^3.0.1",
         "shelljs": "^0.7.8",
         "tslint": "^5.5.0",
         "typescript": "~2.4.2",
+        "uglify-es": "^3.0.27",
+        "uglify-js": "^3.0.27",
         "watch": "^1.0.2"
     }
 }

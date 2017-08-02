@@ -5,6 +5,85 @@
  *
  **/
 
+
+/*****************************************************************
+Import Font
+******************************************************************/
+
+@font-face {
+    font-family: 'AvenirDemi';
+    src: url('../../public/fonts/AvenirNext-DemiBold.eot');
+    /* IE9 Compat Modes */
+    src: url('../../public/fonts/AvenirNext-DemiBold.woff2') format('woff2'), /* Super Modern Browsers */
+    url('../../public/fonts/AvenirNext-DemiBold.woff') format('woff'), /* Pretty Modern Browsers */
+    url('../../public/fonts/AvenirNext-DemiBold.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('../../public/fonts/AvenirNext-DemiBold.svg#svgFontName') format('svg');
+    /* Legacy iOS */
+}
+@font-face {
+    font-family: 'AvenirReg';
+    src: url('../../public/fonts/AvenirNext-Regular.eot');
+    /* IE9 Compat Modes */
+    src: url('../../public/fonts/AvenirNext-Regular.woff2') format('woff2'), /* Super Modern Browsers */
+    url('../../public/fonts/AvenirNext-Regular.woff') format('woff'), /* Pretty Modern Browsers */
+    url('../../public/fonts/AvenirNext-Regular.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('../../public/fonts/AvenirNext-Regular.svg#svgFontName') format('svg');
+    /* Legacy iOS */
+}
+
+/*****************************************************************
+Typography
+******************************************************************/
+
+body {
+    font-family: "AvenirReg";
+}
+h1 {
+    font-family: "AvenirDemi";
+    font-weight: 500;
+    margin: 0;
+}
+h2, h3, h5, h6, th {
+    font-family: "AvenirReg";
+}
+h2 {
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 600;
+}
+h3 {
+    font-size: 30px;
+    font-weight: 600;
+}
+h4 {
+    font-family: "AvenirDemi";
+    font-size: 18px;
+    font-weight: 600;
+}
+h5 {
+    font-family: "AvenirDemi";
+    font-size: 15px;
+    line-height: 22px;
+    font-weight: normal;
+}
+h6 {
+    font-size: 11px;
+    line-height: 22px;
+    font-weight: normal;
+}
+form, input, select, button, textarea {
+    font-family: "AvenirReg";
+    font-size: 12px;
+    line-height: 20px;
+}
+.infoFont {
+    color: #b1b7c5;
+}
+
+/*****************************************************************
+Main Content
+******************************************************************/
+
 .test {
-    color: chocolate
+    color: blue
 }

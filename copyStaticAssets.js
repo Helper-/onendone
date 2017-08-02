@@ -5,7 +5,8 @@ shell.rm('-rf', 'dist/*');
 
 // Create the directory
 shell.mkdir('dist/public/');
-shell.mkdir('dist/css/')
+shell.mkdir('dist/css/');
+shell.mkdir('dist/js/');
 
 // Copy files to the directories.
 shell.cp('-R', 'src/public/js', 'dist/public/');
