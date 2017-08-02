@@ -1,7 +1,7 @@
 "use strict";
 
 function Test() {
-    console.log("This is working.");
+    console.log("This is working so well.");
 }
 
 let foo = async () => "hello world";
