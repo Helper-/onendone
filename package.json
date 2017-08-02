@@ -5,6 +5,7 @@
     "main": "index.js",
     "scripts": {
         "start": "npm run build && npm run watch",
+        "start-prod": "npm run build",
         "build": "npm run build-ts && npm run tslint && npm run copy-static-assets",
         "watch": "npm run watch-ts",
         "build-ts": "tsc",

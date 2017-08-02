@@ -5,14 +5,26 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os/exec"
 )
 
 func main() {
 	// command line flags
 	port := flag.Int("port", 8000, "Port to serve on: ")
-	dir := flag.String("directory", "src/", "Directory of web files: ")
+	dir := flag.String("directory", "dist/", "Directory of web files: ")
+	serve := flag.String("serve", "prod", "Serve production files as default.")
 	flag.Parse()
 
+	if *serve == "prod" {
+		cmd := exec.Command("npm", "start-prod")
+		err := cmd.Start()
+		if err != nil {
+			log.Fatal(err)
+		}
+		log.Printf("Waiting for command to finish...")
+		err = cmd.Wait()
+		log.Printf("Command finished with error: %v", err)
+	}
 	// handle all requests by serving a file of the same name
 	fs := http.Dir(*dir)
 	fileHandler := http.FileServer(fs)
