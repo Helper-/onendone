@@ -12,8 +12,8 @@ Import Font
 
 @font-face {
     font-family: 'AvenirDemi';
-    src: url('../../public/fonts/AvenirNext-DemiBold.eot');
     /* IE9 Compat Modes */
+    src: url('../../public/fonts/AvenirNext-DemiBold.eot');
     src: url('../../public/fonts/AvenirNext-DemiBold.woff2') format('woff2'), /* Super Modern Browsers */
     url('../../public/fonts/AvenirNext-DemiBold.woff') format('woff'), /* Pretty Modern Browsers */
     url('../../public/fonts/AvenirNext-DemiBold.ttf') format('truetype'), /* Safari, Android, iOS */
@@ -22,8 +22,8 @@ Import Font
 }
 @font-face {
     font-family: 'AvenirReg';
-    src: url('../../public/fonts/AvenirNext-Regular.eot');
     /* IE9 Compat Modes */
+    src: url('../../public/fonts/AvenirNext-Regular.eot');
     src: url('../../public/fonts/AvenirNext-Regular.woff2') format('woff2'), /* Super Modern Browsers */
     url('../../public/fonts/AvenirNext-Regular.woff') format('woff'), /* Pretty Modern Browsers */
     url('../../public/fonts/AvenirNext-Regular.ttf') format('truetype'), /* Safari, Android, iOS */
