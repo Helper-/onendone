@@ -6,7 +6,8 @@
         "moduleResolution": "classic",
         "sourceMap": true,
         "types": [
-            "node"
+            "node",
+            "googlemaps"
         ],
         "typeRoots": [
             "node_modules/@types"

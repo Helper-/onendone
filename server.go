@@ -57,12 +57,12 @@ func getRestaurant(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
 
-	c, err := maps.NewClient(maps.WithAPIKey("AIzaSyC-SZ-3fDJXC2ajIwO-PY4ypm2Y80FLF08"))
+	c, err := maps.NewClient(maps.WithAPIKey("AIzaSyD1ia8_Hp8z6AzBF_5E17ik7a_P0mZ0Voo"))
 	if err != nil {
 		log.Fatalf("fatal error: %s", err)
 	}
 	dirRequest := &maps.NearbySearchRequest{
-		Name: vars["location"],
+		Location: vars["location"],
 	}
 	// resp, _, err := c.Directions(context.Background(), dirRequest)
 	// if err != nil {

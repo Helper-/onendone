@@ -24,8 +24,15 @@
 <body>
     <h2 class="test"> This is a test to make sure when I refresh the text and color will change. </h2>
 
+    <div id="locationField">
+        <input id="autocomplete" placeholder="Enter your address" type="text" />
+    </div>
+
     <!-- JavaScript Imports -->
     <script type="text/javascript" src="./js/script.min.js"></script>
+
+    <script async defer type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD1ia8_Hp8z6AzBF_5E17ik7a_P0mZ0Voo&libraries=places&callback=initAutoComplete"></script>
+
 </body>
 
 </html>
