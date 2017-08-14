@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"encoding/json"
 	"flag"
 	"fmt"
@@ -39,8 +40,7 @@ func main() {
 
 	router := mux.NewRouter().StrictSlash(true)
 	router.HandleFunc("/query",
-		func(w http.ResponseWriter, r *http.Request) { getRestaurant(w, r) }).
-		Queries("loc", "{location}")
+		func(w http.ResponseWriter, r *http.Request) { getRestaurant(w, r) })
 	router.PathPrefix("/").Handler(fileHandler)
 
 	log.Printf("Running on port: %d\n", *port)
@@ -57,20 +57,44 @@ func getRestaurant(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
 
-	c, err := maps.NewClient(maps.WithAPIKey("AIzaSyD1ia8_Hp8z6AzBF_5E17ik7a_P0mZ0Voo"))
+	client, err := maps.NewClient(maps.WithAPIKey("AIzaSyD1ia8_Hp8z6AzBF_5E17ik7a_P0mZ0Voo"))
 	if err != nil {
 		log.Fatalf("fatal error: %s", err)
 	}
-	dirRequest := &maps.NearbySearchRequest{
-		Location: vars["location"],
+
+	var tempLatLng map[string]float64
+
+	decoder := json.NewDecoder(r.Body)
+	err = decoder.Decode(&tempLatLng)
+
+	fmt.Println(tempLatLng["lng"])
+
+	tempMapLatLong := maps.LatLng{
+		Lat: tempLatLng["lat"],
+		Lng: tempLatLng["lng"],
 	}
-	// resp, _, err := c.Directions(context.Background(), dirRequest)
+
+	dirRequest := maps.NearbySearchRequest{
+		Location: &tempMapLatLong,
+		Radius:   1000,
+		OpenNow:  true,
+		Keyword:  "burgers",
+		Type:     "restaurant",
+	}
+
+	// resp, _, err := client.Directions(context.Background(), dirRequest)
 	// if err != nil {
 	// 	log.Fatalf("fatal error: %s", err)
 	// }
 
+	resp, err := client.NearbySearch(context.Background(), &dirRequest)
+	if err != nil {
+		log.Fatalf("fatal error: %s", err)
+	}
+
 	pretty.Println(vars["location"])
-	pretty.Println(c)
+	// pretty.Println(client)
+	pretty.Println(resp)
 
 	log.Printf("Search took %s", time.Since(t0))
 	err = json.NewEncoder(w).Encode(dirRequest)

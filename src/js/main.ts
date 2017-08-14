@@ -1,8 +1,5 @@
 "use strict";
 
-// import {} from "@types/googlemaps";
-
-
 function Test() {
     console.log("This is working so well.");
 }
@@ -25,8 +22,19 @@ function initAutoComplete() {
             return;
         }
         else {
-            const lat = listener[0].geometry.location;
-            console.log("This is the lat: %s ", JSON.stringify(lat.toJSON()));
+            const loc = listener[0].geometry.location;
+            console.log("This is the loc: %s ", JSON.stringify(loc.toJSON()));
+
+            const xhr = new XMLHttpRequest();
+            xhr.open("POST", "http://localhost:8000/query");
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+            xhr.send(JSON.stringify(loc.toJSON()));
+
+            xhr.onreadystatechange = function () { // Call a function when the state changes.
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    alert (xhr.responseText);
+                }
+            };
 
         }
 
