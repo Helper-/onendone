@@ -76,8 +76,8 @@ func getRestaurant(w http.ResponseWriter, r *http.Request) {
 
 	dirRequest := maps.NearbySearchRequest{
 		Location: &tempMapLatLong,
-		Radius:   1000,
 		OpenNow:  true,
+		RankBy:   "distance",
 		Keyword:  "burgers",
 		Type:     "restaurant",
 	}
@@ -97,7 +97,7 @@ func getRestaurant(w http.ResponseWriter, r *http.Request) {
 	pretty.Println(resp)
 
 	log.Printf("Search took %s", time.Since(t0))
-	err = json.NewEncoder(w).Encode(dirRequest)
+	err = json.NewEncoder(w).Encode(resp)
 	if err != nil {
 		panic(err)
 	}

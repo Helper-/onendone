@@ -32,12 +32,34 @@ function initAutoComplete() {
 
             xhr.onreadystatechange = function () { // Call a function when the state changes.
                 if (xhr.readyState == 4 && xhr.status == 200) {
-                    alert (xhr.responseText);
+                    console.log(xhr.response);
+                    displayRestaurant(xhr.response);
                 }
             };
 
         }
 
 
+    });
+}
+
+function displayRestaurant (response: any) {
+    const tempObj = JSON.parse(response);
+
+    OrderByArray(tempObj.Results, "rating").map(item => item.rating);
+    console.log(tempObj.Results);
+}
+
+function OrderByArray(values: any[], orderType: any) {
+    return values.sort((a, b) => {
+        if (a[orderType] > b[orderType]) {
+            return -1;
+        }
+
+        if (a[orderType] < b[orderType]) {
+            return 1;
+        }
+
+        return 0;
     });
 }
