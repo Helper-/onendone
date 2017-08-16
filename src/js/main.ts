@@ -1,16 +1,5 @@
 "use strict";
 
-function Test() {
-    console.log("This is working so well.");
-}
-
-// let test = async () => "hello world";
-// let bar = async () => await test();
-// bar();
-Test();
-
-// module.exports = Test;
-
 function initAutoComplete() {
     // Create the search box and link it to the UI element.
     const input = <HTMLInputElement>document.getElementById("autocomplete");
@@ -25,22 +14,40 @@ function initAutoComplete() {
             const loc = listener[0].geometry.location;
             console.log("This is the loc: %s ", JSON.stringify(loc.toJSON()));
 
-            const xhr = new XMLHttpRequest();
-            xhr.open("POST", "http://localhost:8000/query");
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-            xhr.send(JSON.stringify(loc.toJSON()));
+            // const xhr = new XMLHttpRequest();
+            // xhr.open("POST", "http://localhost:8000/query");
+            // xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+            // xhr.send(JSON.stringify(loc.toJSON()));
 
-            xhr.onreadystatechange = function () { // Call a function when the state changes.
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    console.log(xhr.response);
-                    displayRestaurant(xhr.response);
-                }
-            };
+            // xhr.onreadystatechange = function () { // Call a function when the state changes.
+            //     if (xhr.readyState == 4 && xhr.status == 200) {
+            //         console.log(xhr.response);
+            //         displayRestaurant(xhr.response);
+            //     }
+            // };
 
         }
 
 
     });
+}
+
+function sendInput() {
+    let sendArr: Array<any> = [];
+    sendArr.push((<HTMLInputElement>document.getElementById("keyword")).value);
+    console.log(sendArr);
+
+    // const xhr = new XMLHttpRequest();
+    // xhr.open("POST", "http://localhost:8000/query");
+    // xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+    // xhr.send(JSON.stringify(loc.toJSON()));
+
+    // xhr.onreadystatechange = function () { // Call a function when the state changes.
+    //     if (xhr.readyState == 4 && xhr.status == 200) {
+    //         console.log(xhr.response);
+    //         displayRestaurant(xhr.response);
+    //     }
+    // };
 }
 
 function displayRestaurant (response: any) {
